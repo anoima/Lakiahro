@@ -1,4 +1,4 @@
-  using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,11 +19,15 @@ namespace lakiahrotest2
         Point f = new Point(100, 100);
 
         int max = 12;
-
+        SolidBrush redbrush =new SolidBrush(Color.Red);
+        SolidBrush bgbrush = new SolidBrush(Color.SandyBrown);
+        SolidBrush selectedcolor=new SolidBrush(Color.SandyBrown);
+        SolidBrush pointcolor = new SolidBrush(Color.Black);
         Pen line1 = new Pen(Color.Red,3);
         Pen line2 = new Pen(Color.Black, 1);
 
         bool toolselected = false;
+        bool pointchecked = false;
 
         public Helper()
         {
@@ -62,10 +66,18 @@ namespace lakiahrotest2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            pointchecked=checkBox1.Checked;
             if (toolselected)
             {
-                refresh();
-                draw(max);
+                if (pointchecked == false)
+                {
+                    refresh();
+                    draw(max);  
+                }
+                else
+                {
+                    refresh();
+                }
             }
             else
             {
@@ -80,7 +92,7 @@ namespace lakiahrotest2
             {
                 var g2 = Graphics.FromImage(pictureBox2.Image);
                 var g3 = Graphics.FromImage(pictureBox3.Image);
-                g.FillRectangle(Brushes.SandyBrown, new Rectangle(0, 0, max * 50, max * 50));
+                g.FillRectangle(bgbrush, new Rectangle(0, 0, max * 50, max * 50));
                 for (int i = 0; i <= max; i++)
                 {
                     g2.DrawString(i+1+"", new System.Drawing.Font("Arial", 10), new System.Drawing.SolidBrush(System.Drawing.Color.Black), 3, x+20);
@@ -98,18 +110,46 @@ namespace lakiahrotest2
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            pointchecked = checkBox1.Checked;
             MouseEventArgs me = (MouseEventArgs)e;
             Point coordinates = me.Location;
             //MessageBox.Show(coordinates + "");
-            switch (comboBox1.SelectedIndex)
+            if (pointchecked == false) { 
+                switch (comboBox1.SelectedIndex)
+                {
+                    case 0: drawareaPRI(coordinates, pointcolor, line1); break;
+                    case 1: drawareaDUO(coordinates, pointcolor, line1); break;
+                    case 2: drawareaTRI(coordinates, pointcolor, line1); break;
+                    case 3: drawareaTET(coordinates, pointcolor, line1); break;
+                    case 4: drawareaPEN(coordinates, pointcolor, line1); break;
+                }
+            }
+            else
             {
-                case 0: drawareaPRI(coordinates, Brushes.Black, line1); break;
-                case 1: drawareaDUO(coordinates, Brushes.Black, line1); break;
-                case 2: drawareaTRI(coordinates, Brushes.Black, line1); break;
-                case 3: drawareaTET(coordinates, Brushes.Black, line1); break;
-                case 4: drawareaPEN(coordinates, Brushes.Black, line1); break;
+                justpoint(coordinates);
             }
            
+        }
+        private void justpoint(Point startp)
+        {
+            Point startpoint = new Point(getdrawpos(startp).X, getdrawpos(startp).Y);
+            using (var g = Graphics.FromImage(pictureBox1.Image))
+            {
+                if (selectedcolor == redbrush)
+                {
+                    g.FillRectangle(redbrush, startpoint.X + 1, startpoint.Y + 1, 49, 49);
+                } 
+                if (selectedcolor == bgbrush)
+                {
+                    g.FillRectangle(bgbrush, startpoint.X + 1, startpoint.Y + 1, 49, 49);
+                }
+                if (selectedcolor == pointcolor)
+                {
+                    g.FillEllipse(pointcolor, new Rectangle(startpoint.X + 15, startpoint.Y + 15, 20, 20));
+                }
+
+                pictureBox1.Refresh();
+            }
         }
 
         private void drawareaPEN(Point startp, Brush bg, Pen l)
@@ -283,7 +323,7 @@ namespace lakiahrotest2
 
         private void asdToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            pointchecked = checkBox1.Checked;
             max = 10;
             refresh();
             draw(max);
@@ -292,7 +332,7 @@ namespace lakiahrotest2
 
         private void x12ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            pointchecked = checkBox1.Checked;
             max = 12;
             refresh();
             draw(max);
@@ -300,8 +340,9 @@ namespace lakiahrotest2
 
         private void x14ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            pointchecked = checkBox1.Checked;
             max = 14;
-            refresh();           
+            refresh();
             draw(max);
         }
 
@@ -318,24 +359,24 @@ namespace lakiahrotest2
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
-                     drawareaPRI(coordinates, Brushes.SandyBrown, new Pen(Color.SandyBrown, 3));
-                     drawareaPRI(coordinates, Brushes.SandyBrown, line2); 
+                     drawareaPRI(coordinates, bgbrush, new Pen(Color.SandyBrown, 3));
+                     drawareaPRI(coordinates, bgbrush, line2); 
                     break;
                 case 1:
-                     drawareaDUO(coordinates, Brushes.SandyBrown, new Pen(Color.SandyBrown, 3));
-                     drawareaDUO(coordinates, Brushes.SandyBrown, line2);
+                     drawareaDUO(coordinates, bgbrush, new Pen(Color.SandyBrown, 3));
+                     drawareaDUO(coordinates, bgbrush, line2);
                     break;
                 case 2: 
-                     drawareaTRI(coordinates, Brushes.SandyBrown, new Pen(Color.SandyBrown, 3));
-                     drawareaTRI(coordinates, Brushes.SandyBrown, line2); 
+                     drawareaTRI(coordinates, bgbrush, new Pen(Color.SandyBrown, 3));
+                     drawareaTRI(coordinates, bgbrush, line2); 
                     break;
                 case 3:
-                    drawareaTET(coordinates, Brushes.SandyBrown, new Pen(Color.SandyBrown, 3));
-                    drawareaTET(coordinates, Brushes.SandyBrown, line2); 
+                    drawareaTET(coordinates, bgbrush, new Pen(Color.SandyBrown, 3));
+                    drawareaTET(coordinates, bgbrush, line2); 
                     break;
                 case 4: 
-                    drawareaPEN(coordinates, Brushes.SandyBrown, new Pen(Color.SandyBrown, 3));
-                    drawareaPEN(coordinates, Brushes.SandyBrown, line2);  
+                    drawareaPEN(coordinates, bgbrush, new Pen(Color.SandyBrown, 3));
+                    drawareaPEN(coordinates, bgbrush, line2);  
                     break;
             }
         }
@@ -361,6 +402,36 @@ namespace lakiahrotest2
         private void pictureBox3_Paint(object sender, PaintEventArgs e)
         {
             g3 = e.Graphics;
+        }
+
+        private void redbox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.FillRectangle(redbrush, 0, 0, 22, 22);
+        }
+
+        private void basicbox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.FillRectangle(bgbrush, 0, 0, 22, 22);
+        }
+
+        private void redbox_Click(object sender, EventArgs e)
+        {
+            selectedcolor = redbrush;
+        }
+
+        private void basicbox_Click(object sender, EventArgs e)
+        {
+            selectedcolor = bgbrush;
+        }
+
+        private void Pointbox_Click(object sender, EventArgs e)
+        {
+            selectedcolor = pointcolor;
+        }
+
+        private void Pointbox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.FillEllipse(pointcolor,3,3,15,15);
         }
     }
 }
