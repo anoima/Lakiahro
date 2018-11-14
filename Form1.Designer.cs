@@ -40,10 +40,17 @@ namespace lakiahrotest2
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.redbox = new System.Windows.Forms.PictureBox();
+            this.basicbox = new System.Windows.Forms.PictureBox();
+            this.Pointbox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.redbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basicbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pointbox)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -155,12 +162,56 @@ namespace lakiahrotest2
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox3_Paint);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(216, 6);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(73, 17);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Only Click";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // redbox
+            // 
+            this.redbox.Location = new System.Drawing.Point(326, 5);
+            this.redbox.Name = "redbox";
+            this.redbox.Size = new System.Drawing.Size(22, 22);
+            this.redbox.TabIndex = 10;
+            this.redbox.TabStop = false;
+            this.redbox.Click += new System.EventHandler(this.redbox_Click);
+            this.redbox.Paint += new System.Windows.Forms.PaintEventHandler(this.redbox_Paint);
+            // 
+            // basicbox
+            // 
+            this.basicbox.Location = new System.Drawing.Point(366, 5);
+            this.basicbox.Name = "basicbox";
+            this.basicbox.Size = new System.Drawing.Size(22, 22);
+            this.basicbox.TabIndex = 11;
+            this.basicbox.TabStop = false;
+            this.basicbox.Click += new System.EventHandler(this.basicbox_Click);
+            this.basicbox.Paint += new System.Windows.Forms.PaintEventHandler(this.basicbox_Paint);
+            // 
+            // Pointbox
+            // 
+            this.Pointbox.Location = new System.Drawing.Point(406, 5);
+            this.Pointbox.Name = "Pointbox";
+            this.Pointbox.Size = new System.Drawing.Size(22, 22);
+            this.Pointbox.TabIndex = 12;
+            this.Pointbox.TabStop = false;
+            this.Pointbox.Click += new System.EventHandler(this.Pointbox_Click);
+            this.Pointbox.Paint += new System.Windows.Forms.PaintEventHandler(this.Pointbox_Paint);
+            // 
             // Helper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 796);
             this.ControlBox = false;
+            this.Controls.Add(this.Pointbox);
+            this.Controls.Add(this.basicbox);
+            this.Controls.Add(this.redbox);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tooltxt);
@@ -179,6 +230,9 @@ namespace lakiahrotest2
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.redbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basicbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pointbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +252,10 @@ namespace lakiahrotest2
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.PictureBox redbox;
+        private System.Windows.Forms.PictureBox basicbox;
+        private System.Windows.Forms.PictureBox Pointbox;
     }
 }
 
